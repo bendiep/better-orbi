@@ -1,0 +1,1125 @@
+/* Better Orbi: black canvas, charcoal panels, violet activity, lime health.
+   Theme styles. Layout and privacy fixes remain part of the component rules. */
+:root {
+  color-scheme: dark;
+  --orbi-canvas: #080808;
+  --orbi-sidebar: #111111;
+  --orbi-surface: #1b1b1b;
+  --orbi-raised: #262626;
+  --orbi-border: #343434;
+  --orbi-text: #f7f7f8;
+  --orbi-muted: #b7b5bf;
+  --orbi-accent: #b997ff;
+  --orbi-selected: #302244;
+  --orbi-good: #c8ed64;
+  --orbi-warning: #f0c382;
+  --orbi-error: #ffa4a4;
+  --orbi-violet: #7a3df0;
+  --orbi-primary: #f7f7f8;
+  --orbi-primary-text: #111111;
+  --orbi-field: #121212;
+  --orbi-field-border: #625d6a;
+  --orbi-radius-panel: 20px;
+  --orbi-radius-table: var(--orbi-radius-panel);
+  --orbi-radius-control: 10px;
+  --orbi-header-height: 144px;
+  --orbi-field-width: 360px;
+  --orbi-long-field-width: 480px;
+}
+html, body, #app, #app .orbi {
+  color-scheme: dark !important;
+  color: var(--orbi-text) !important;
+  background-color: var(--orbi-canvas) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+/* Inherit readable text instead of the firmware's fixed brown / black labels. */
+#app .orbi :where(div, span, p, b, strong, label, li, font, h1, h2, h3, h4) {
+  color: inherit !important;
+  font-family: inherit !important;
+}
+#app .orbi :where(a, .el-link) { color: var(--orbi-accent) !important; }
+#app .orbi :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--orbi-accent) !important;
+  outline-offset: 3px !important;
+}
+/* Field focus meets the border, including the footer's Search Help input. */
+#app .orbi :where(.el-input__inner, .el-textarea__inner, select,
+  input[type="text"], input[type="password"], input[type="email"], input[type="number"]):focus-visible {
+  outline-offset: 0 !important; border-color: var(--orbi-accent) !important;
+}
+/* Give header controls explicit rows with breathing room below the tabs. */
+#app .orbi > .el-header { height: var(--orbi-header-height) !important; }
+#app .orbi .top-bar { height: var(--orbi-header-height) !important; }
+#app .orbi :is(.dni-aside, .dni-main) { top: var(--orbi-header-height) !important; }
+#app .orbi :where(.top-bar, .level1, .level2, .level3, .dni-main, .single-main) {
+  background: var(--orbi-canvas) !important;
+  color: var(--orbi-text) !important;
+  border-color: var(--orbi-border) !important;
+}
+#app .orbi .level1 { border-bottom-color: var(--orbi-canvas) !important; }
+#app .orbi .level1 .firm_version { color: var(--orbi-muted) !important; font-weight: 500 !important; }
+/* Reserve distinct rows for Logout, firmware details, and language. */
+#app .orbi.gui-2-1 .level1 .firm_version {
+  top: 52px !important; right: 20px !important;
+  font-size: 12px !important; line-height: 16px !important;
+}
+#app .orbi.gui-2-1 .logout-div { top: 12px !important; right: 20px !important; }
+#app .orbi.gui-2-1 .logout-div .el-button {
+  box-sizing: border-box; height: 28px !important; min-width: 100px;
+  margin: 0 !important; padding: 0 16px !important; line-height: 26px !important;
+  font-size: 12px !important;
+}
+#app .orbi .level3 {
+  top: calc(var(--orbi-header-height) - 44px) !important;
+  height: 28px !important;
+}
+#app .orbi.gui-2-1 .level3 .lang-div { bottom: 0 !important; }
+#app .orbi .level3::after { display: none !important; }
+#app .orbi .top-bar {
+  background: radial-gradient(ellipse at 84% 0%, rgb(122 61 240 / 15%), transparent 42%),
+    radial-gradient(ellipse at 2% 0%, rgb(200 237 100 / 8%), transparent 28%),
+    var(--orbi-canvas) !important;
+}
+#app .orbi .top-bar :is(.level1, .level2, .level3) { background: transparent !important; }
+#app .orbi .top-bar .logo { filter: grayscale(1) brightness(2.5); }
+#app .orbi .dni-aside { background: var(--orbi-sidebar) !important; border-right: 0 !important; }
+#app .orbi .dni-main { border-left: 0 !important; }
+/* Give the native language selector a stable height and one chevron. */
+#app .orbi .top-bar .lang-selection select {
+  appearance: none !important; -webkit-appearance: none !important;
+  box-sizing: border-box; width: 144px !important; height: 28px !important;
+  margin: 0 !important; padding: 4px 30px 4px 10px !important;
+  font: 500 13px / 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  color: var(--orbi-text) !important; background-color: var(--orbi-surface) !important;
+  border: 1px solid #45424a !important; border-radius: 999px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m3 4.5 3 3 3-3' fill='none' stroke='%23b7b5bf' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important; background-position: right 10px center !important;
+  background-size: 12px 12px !important; cursor: pointer;
+}
+#app .orbi .top-bar .lang-selection select:hover { border-color: #b997ff !important; }
+#app .orbi .top-bar .lang-selection select:disabled { opacity: .6; cursor: default; }
+/* Segmented tabs and one clear selected state. */
+#app .orbi .level3 .el-menu-top {
+  display: flex; align-items: center; gap: 8px;
+  width: max-content; background: transparent !important;
+}
+#app .orbi .level3 .el-menu-top .el-menu-item {
+  box-sizing: border-box; height: 28px !important; line-height: 26px !important;
+  color: var(--orbi-muted) !important;
+  background: var(--orbi-surface) !important;
+  border: 1px solid var(--orbi-border) !important;
+  border-radius: 999px !important;
+  padding-inline: 20px !important; margin: 0 !important;
+  font-size: 13px !important; font-weight: 550 !important;
+  text-transform: capitalize !important; letter-spacing: 0;
+}
+#app .orbi .level3 .el-menu-top .el-menu-item.is-active,
+#app .orbi .level3 .el-menu-top .el-menu-item.is-active:hover {
+  color: var(--orbi-primary-text) !important;
+  background: var(--orbi-primary) !important;
+  border-color: var(--orbi-primary) !important;
+}
+#app .orbi .level3 .el-menu-top .el-menu-item::after { background: transparent !important; }
+#app .orbi .level3 .el-menu-top .el-menu-item:not(.is-active):hover { color: var(--orbi-text) !important; background: var(--orbi-raised) !important; }
+/* Legacy IPv4/IPv6 tabs use label_click, not the top navigation classes. */
+#app .orbi :is(.label_click, .label_unclick) {
+  color: var(--orbi-muted) !important;
+  background: var(--orbi-surface) !important;
+  border: 1px solid var(--orbi-border) !important;
+  border-radius: 999px !important;
+  margin-right: 6px !important;
+  font-size: 13px !important; font-weight: 600 !important;
+}
+#app .orbi :is(.label_click, .label_unclick) :where(span, b, div) {
+  color: inherit !important; background: transparent !important;
+  font-size: inherit !important; font-weight: inherit !important;
+}
+#app .orbi .label_unclick:hover {
+  color: var(--orbi-text) !important;
+  background: var(--orbi-raised) !important;
+  border-color: #8d7cb6 !important;
+}
+#app .orbi .label_click {
+  color: var(--orbi-primary-text) !important;
+  background: var(--orbi-primary) !important;
+  border-color: var(--orbi-primary) !important;
+  box-shadow: none !important;
+}
+/* Cover the sidebar's scrollbar wrappers as well as root and nested menus. */
+#app .orbi .dni-aside .menu-scrollbar,
+#app .orbi .dni-aside .el-scrollbar__wrap,
+#app .orbi .dni-aside .el-scrollbar__view,
+#app .orbi .dni-aside .left-menu,
+#app .orbi .dni-aside .el-menu {
+  background: var(--orbi-sidebar) !important;
+  background-image: none !important;
+  color: var(--orbi-muted) !important;
+  border: 0 !important;
+}
+#app .orbi .left-menu .el-menu-item,
+#app .orbi .left-menu .el-submenu__title {
+  color: var(--orbi-muted) !important; background: transparent !important;
+  border: 0 !important; border-radius: 999px;
+  margin: 6px 8px !important; padding: 11px 16px !important;
+  min-height: 36px; font-size: 13px !important; font-weight: 500 !important;
+}
+#app .orbi .left-menu .el-menu-item:hover,
+#app .orbi .left-menu .el-submenu__title:hover { color: var(--orbi-text) !important; background: var(--orbi-raised) !important; }
+#app .orbi .left-menu .el-menu-item.is-active,
+#app .orbi .left-menu .el-menu-item.is-active:hover {
+  color: var(--orbi-accent) !important; background: var(--orbi-selected) !important;
+  box-shadow: none !important;
+}
+#app .orbi .left-menu .el-menu-item:focus-visible,
+#app .orbi .left-menu .el-submenu__title:focus-visible {
+  outline: 1px solid #b997ff !important; outline-offset: -2px !important;
+  box-shadow: none !important;
+}
+#app .orbi .left-menu .el-menu-item span { border: 0 !important; text-decoration: none !important; }
+#app .orbi .left-menu .el-menu-item.is-disabled,
+#app .orbi .left-menu .el-submenu.is-disabled .el-submenu__title { color: #a29eab !important; background: transparent !important; box-shadow: none !important; }
+#app .orbi .card-nighthawk-app { display: none !important; }
+/* Controls, dialogs, and dropdowns. */
+#app .orbi .el-button,
+#app .orbi .el-button:hover,
+#app .orbi .el-button:focus,
+#app .orbi .el-button:active {
+  color: var(--orbi-text) !important; background: var(--orbi-raised) !important;
+  border: 1px solid #45424a !important; border-radius: 999px !important;
+  box-shadow: none !important; text-transform: none !important;
+  font-weight: 550 !important; opacity: 1 !important;
+}
+#app .orbi .el-button:hover { border-color: #b997ff !important; }
+#app .orbi .el-button--primary,
+#app .orbi .el-button--primary:hover { color: var(--orbi-primary-text) !important; background: var(--orbi-primary) !important; border-color: var(--orbi-primary) !important; }
+#app .orbi .el-button--primary:hover { background: #e7e0f3 !important; border-color: #e7e0f3 !important; }
+#app .orbi .el-button.is-disabled,
+#app .orbi .el-button.is-disabled:hover { color: #a29eab !important; background: #252328 !important; border-color: var(--orbi-border) !important; cursor: not-allowed !important; }
+#app .orbi :where(.el-input__inner, .el-textarea__inner, select,
+  input[type="text"], input[type="password"], input[type="number"], input[type="email"]) {
+  color: var(--orbi-text) !important; -webkit-text-fill-color: var(--orbi-text) !important;
+  background: var(--orbi-field) !important; border: 1px solid var(--orbi-field-border) !important;
+  border-radius: var(--orbi-radius-control) !important; box-shadow: none !important; font-family: inherit !important;
+}
+#app .orbi input::placeholder,
+#app .orbi textarea::placeholder { color: #aca7b5 !important; -webkit-text-fill-color: #aca7b5 !important; }
+#app .orbi :is(.el-input__inner, .el-textarea__inner, select):hover { border-color: #92869f !important; }
+#app .orbi :is(.el-input__inner, .el-textarea__inner, select):focus { border-color: var(--orbi-accent) !important; }
+/* Use the same centred chevron on every native single-choice dropdown. */
+#app .orbi select:where(:not([multiple]):not([size]), [size="1"]:not([multiple])) {
+  appearance: none !important; -webkit-appearance: none !important;
+  box-sizing: border-box !important; height: 34px !important;
+  padding: 5px 34px 5px 10px !important; line-height: 22px !important;
+  vertical-align: middle; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m3 4.5 3 3 3-3' fill='none' stroke='%23b7b5bf' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important; background-position: right 11px center !important;
+  background-size: 12px 12px !important;
+}
+/* Element UI dropdowns use an icon rather than a native select arrow. */
+#app .orbi .el-select .el-input__suffix {
+  display: flex !important; align-items: center; justify-content: center;
+  top: 0 !important; bottom: 0 !important; right: 5px !important;
+  height: auto !important; line-height: 1 !important;
+}
+#app .orbi .el-select .el-input__suffix-inner {
+  display: inline-flex !important; align-items: center; height: 100%;
+}
+#app .orbi .el-select .el-select__caret {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  height: 100% !important; line-height: 1 !important; color: var(--orbi-muted) !important;
+}
+#app .orbi .el-select .el-select__caret::after { display: none !important; }
+/* File selection is one aligned row; the action below gets its own gap. */
+#app .orbi .main-form .dni-upload:not(.wizard) {
+  display: flex !important; align-items: center; gap: 12px;
+  height: 40px !important; max-width: 640px; margin-bottom: 16px !important;
+}
+#app .orbi .main-form .dni-upload:not(.wizard) > input[type="text"] {
+  box-sizing: border-box !important; flex: 1 1 auto; min-width: 0;
+  width: 0 !important; max-width: none !important; height: 40px !important;
+  margin: 0 !important; padding: 0 12px !important; line-height: normal !important;
+}
+#app .orbi .main-form .dni-upload:not(.wizard) > .right-btn {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  box-sizing: border-box; flex: 0 0 auto; height: 40px !important;
+  margin: 0 !important; padding: 0 20px !important; line-height: normal !important;
+}
+#app .orbi .main-form .dni-upload:not(.wizard) + .el-button {
+  margin: 0 !important; min-height: 36px;
+}
+/* Replace the firmware's 140px default for free-text settings.
+   Size the Element UI wrapper so password suffix icons move with the field.
+   Leave segmented addresses, dropdowns, and short numeric fields alone. */
+#app .orbi :is(.main-form, .el-form) .el-input:has(> input:is(
+  [type="text"], [type="password"], [type="email"], [type="url"], [type="search"]
+)):not(
+  .el-select .el-input, .el-input-number .el-input, .el-date-editor,
+  .ipv4 .el-input, .ipv6 .el-input, .interfaceId .el-input,
+  .ip-input-row .el-input, .hours-input,
+  :has(> input:is(
+    [inputmode="numeric"], [inputmode="decimal"],
+    [maxlength="1"], [maxlength="2"], [maxlength="3"], [maxlength="4"],
+    [maxlength="5"], [maxlength="6"], [maxlength="7"], [maxlength="8"],
+    [maxlength="9"], [maxlength="10"],
+    #WPethr, #WMask, #WGateway, #DAddr, #PDAddr,
+    #water_mark, [id^="fwpt_timeout"], #pt_port, #in_port_start, #in_port_end
+  ))
+) {
+  --orbi-free-field-height: 34px;
+  width: min(calc(100% - 12px), var(--orbi-input-width, var(--orbi-field-width))) !important;
+  max-width: calc(100% - 12px) !important; min-width: 0 !important;
+  margin-inline-end: 12px !important;
+}
+#app .orbi :is(.main-form, .el-form) .el-input > .el-input__inner {
+  min-height: var(--orbi-free-field-height, 0) !important;
+}
+/* Also separate inline hints after compact scalar inputs, without changing IP dots. */
+#app .orbi :is(.main-form, .el-form) .el-form-item__content > .el-input:not(.hours-input) {
+  margin-inline-end: 12px !important;
+  max-width: calc(100% - 12px) !important;
+}
+/* Keep revealed passwords the same width as their masked state. */
+#app .orbi :is(.main-form, .el-form) .el-input:has(> input:is(
+  [type="password"], [type="email"], [type="url"], [autocomplete="new-password"],
+  [id*="passphrase" i], [id*="password" i], [id*="passwd" i], [id*="pwd" i],
+  [id*="mail" i],
+  [maxlength="64"], [maxlength="128"], [maxlength="253"],
+  [maxlength="255"], [maxlength="256"]
+)) { --orbi-input-width: var(--orbi-long-field-width); }
+/* A complete MAC address needs more room than an IP segment. */
+#app .orbi :is(.main-form, .el-form) .el-input:has(> input[maxlength="17"]) {
+  --orbi-input-width: 240px;
+}
+/* Center both of the firmware's visibility icons in the actual input height. */
+#app .orbi .el-input__suffix:has(:is(.fa-eye, .fa-eye-slash, .el-icon-view)) {
+  display: flex !important; align-items: center; justify-content: center;
+  inset: 0 4px 0 auto !important; width: 32px !important; height: auto !important;
+  line-height: 1 !important;
+}
+#app .orbi .el-input__suffix:has(:is(.fa-eye, .fa-eye-slash, .el-icon-view)) .el-input__suffix-inner {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  height: 100%; line-height: 1 !important;
+}
+#app .orbi .el-input__suffix :is(.fa-eye, .fa-eye-slash, .el-icon-view) {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  position: static !important; float: none !important; transform: none !important;
+  width: 28px !important; height: 100% !important;
+  margin: 0 !important; padding: 0 !important;
+  font-size: 16px !important; line-height: 1 !important; cursor: pointer;
+}
+#app .orbi .el-input__suffix :is(.fa-eye, .fa-eye-slash, .el-icon-view)::before {
+  display: block; line-height: 1 !important;
+}
+#app .orbi .el-input__suffix :is(.fa-eye, .fa-eye-slash, .el-icon-view)::after { display: none !important; }
+#app .orbi .el-input:has(.el-input__suffix :is(.fa-eye, .fa-eye-slash, .el-icon-view)) > .el-input__inner {
+  padding-right: 40px !important;
+}
+#app .orbi .el-input.is-disabled .el-input__inner { color: #a29eab !important; -webkit-text-fill-color: #a29eab !important; background: var(--orbi-surface) !important; }
+#app .orbi .el-form-item__label { color: var(--orbi-muted) !important; }
+#app .orbi :where(.el-checkbox__label, .el-radio__label, .el-form-item__content) { color: var(--orbi-text) !important; }
+#app .orbi :where(.el-checkbox__inner, .el-radio__inner) { background: #121212 !important; border-color: #81798c !important; }
+#app .orbi .is-checked :where(.el-checkbox__inner, .el-radio__inner) { background: var(--orbi-violet) !important; border-color: var(--orbi-accent) !important; }
+.el-select-dropdown, .el-dropdown-menu, .el-popper, .el-dialog,
+.el-message-box, #app .orbi .el-card { color: var(--orbi-text) !important; background: var(--orbi-surface) !important; border-color: var(--orbi-border) !important; }
+.el-select-dropdown__item, .el-dropdown-menu__item, .el-dialog__title,
+.el-message-box__title, .el-message-box__content { color: var(--orbi-text) !important; }
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover,
+.el-dropdown-menu__item:hover { background: var(--orbi-selected) !important; }
+/* The firmware adds a top border to the loading overlay during navigation. */
+#app .orbi .el-loading-mask {
+  background: rgb(8 8 8 / 88%) !important;
+  border: 0 !important; box-shadow: none !important;
+}
+/* Speed Test uses a native table and button, outside Element UI's controls. */
+#app .orbi.qos-page .main-form table:has(#speedtestBtn) {
+  box-sizing: border-box; width: min(540px, 100%) !important;
+  margin: 24px 0 !important; padding: 20px;
+  table-layout: fixed; border-spacing: 0;
+  background: var(--orbi-surface) !important; color: var(--orbi-text) !important;
+  border: 1px solid var(--orbi-border); border-radius: var(--orbi-radius-panel);
+}
+#app .orbi.qos-page .main-form table:has(#speedtestBtn) td {
+  height: auto !important; padding: 8px 10px; vertical-align: middle;
+  font-size: 13px !important; line-height: 1.5; color: var(--orbi-muted) !important;
+}
+#app .orbi #speedtestBtn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 10px 24px; margin: 0 0 4px;
+  color: var(--orbi-primary-text) !important; background: var(--orbi-primary) !important;
+  border: 1px solid var(--orbi-primary); border-radius: 999px;
+  font: 600 14px / 1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+#app .orbi #speedtestBtn:hover { background: #ece8f4 !important; }
+#app .orbi #speedtestBtn:disabled { opacity: .6; cursor: wait; }
+#app .orbi #ookla_img {
+  display: block; width: 180px !important; height: 18px !important;
+  margin: 0 auto; filter: brightness(0) invert(.85);
+}
+#app .orbi #speedtest_testdone { color: var(--orbi-muted) !important; }
+#app .orbi #speedtest_testdone[style*="red"] { color: var(--orbi-error) !important; }
+#app .orbi.qos-page .main-form table:has(#speedtestBtn) td.icon {
+  padding-top: 18px; padding-bottom: 4px;
+  color: var(--orbi-accent) !important; font-weight: 600;
+}
+#app .orbi :is(#download_icon, #upload_icon) { display: none !important; }
+#app .orbi.qos-page .main-form td.icon::before {
+  display: inline-flex; align-items: center; justify-content: center;
+  box-sizing: border-box; width: 22px; height: 22px; margin-right: 7px;
+  border: 1px solid #8d7cb6; border-radius: 50%;
+  color: var(--orbi-accent); font-size: 16px; line-height: 1; vertical-align: middle;
+}
+#app .orbi.qos-page .main-form td.icon:has(#download_icon)::before { content: "↓"; }
+#app .orbi.qos-page .main-form td.icon:has(#upload_icon)::before { content: "↑"; }
+#app .orbi :is(#ookla_downlink_board, #ookla_uplink_board) {
+  color: var(--orbi-text) !important; font-size: 26px !important;
+  font-weight: 600; font-variant-numeric: tabular-nums;
+}
+#app .orbi :is(#ookla_downlink_board, #ookla_uplink_board) b { font-size: inherit !important; }
+/* Dashboard: replace the white sprites with compact line icons. */
+#app .orbi .basic-dashboard {
+  display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px; max-width: 1400px !important; margin: 32px !important;
+  padding-bottom: 24px; color: var(--orbi-text) !important;
+}
+#app .orbi .basic-dashboard::before {
+  content: "Network overview"; grid-column: 1 / -1;
+  margin: 0 0 10px; color: var(--orbi-text);
+  font-size: clamp(26px, 2.7vw, 38px); line-height: 1.2;
+  font-weight: 450; letter-spacing: -.035em;
+}
+#app .orbi .basic-card {
+  float: none !important; width: auto !important; height: auto !important;
+  min-height: 190px; min-width: 0; margin: 0 !important;
+  border: 1px solid var(--orbi-border) !important; border-radius: var(--orbi-radius-panel) !important;
+  color: var(--orbi-text) !important; background-color: var(--orbi-surface) !important;
+  background-repeat: no-repeat !important; background-position: 24px 25px !important; background-size: 26px 26px !important;
+  box-shadow: none !important; overflow: hidden;
+}
+#app .orbi .basic-card:not(.armor):hover { border-color: #8d7cb6 !important; --orbi-card-stroke: #8d7cb6; }
+#app .orbi .basic-card__header { height: 76px !important; display: flex; align-items: center; padding: 0 24px 0 64px; border-bottom: 0 !important; }
+#app .orbi .icon_title { width: auto !important; height: auto !important; float: none !important; margin: 0 !important; text-align: left !important; }
+#app .orbi .icon_name { font-size: 18px !important; font-weight: 500 !important; letter-spacing: -.02em; }
+#app .orbi .basic-card__body { height: auto !important; min-height: 64px; padding: 14px 24px 24px !important; line-height: 1.7 !important; text-align: left !important; font-size: 14px !important; }
+#app .orbi :where(.wireless-info, .attached-info) { padding: 0 !important; }
+#app .orbi .basic-card .stat {
+  display: flex !important; flex-wrap: wrap; gap: 2px 6px;
+  float: none !important; width: auto !important; padding: 0 !important;
+  text-align: left !important; white-space: normal !important; line-height: 1.7 !important; font-size: 13px !important;
+}
+/* Hide dashboard password rows, including labels and scrolling duplicates.
+   This only hides the rendered text; the router still sends it to the page. */
+#app .orbi .basic-dashboard .stat:has(:is(#wireless2-1, #guest2-1)) {
+  display: none !important;
+}
+#app .orbi .basic-card .left-label { color: var(--orbi-muted) !important; font-weight: 450 !important; }
+#app .orbi .basic-card .right-value { color: var(--orbi-text) !important; font-weight: 550 !important; }
+#app .orbi .basic-card .auto-scroll { margin: 0 !important; width: auto !important; max-width: 100%; overflow-wrap: anywhere; }
+#app .orbi .basic-card .animate { animation: none !important; transform: none !important; white-space: normal !important; }
+#app .orbi .basic-card .animate .right-value + .right-value { display: none !important; }
+#app .orbi #internet_stat .right-value { color: var(--orbi-good) !important; }
+#app .orbi #attached_stat .right-value { color: var(--orbi-accent) !important; }
+#app .orbi .basic-card.armor .right-value { color: var(--orbi-muted) !important; }
+#app .orbi .basic-card.box-card-error .basic-card__body,
+#app .orbi .basic-card.box-card-error .error-right-value { color: var(--orbi-error) !important; background-color: #382229 !important; }
+#app .orbi .basic-card.box-card-warning .wlan_stat { background: #342a1b !important; color: var(--orbi-warning) !important; }
+#app .orbi .basic-card.internet { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b997ff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22%2F%3E%3Cpath%20d%3D%22M3%2012h18M12%203c5%205%205%2013%200%2018-5-5-5-13%200-18Z%22%2F%3E%3C%2Fsvg%3E") !important; }
+#app .orbi .basic-card.wireless { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b997ff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2%208a16%2016%200%200%201%2020%200M5%2012a11%2011%200%200%201%2014%200M8.5%2016a5%205%200%200%201%207%200%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2220%22%20r%3D%22.7%22%20fill%3D%22%23b997ff%22%2F%3E%3C%2Fsvg%3E") !important; }
+#app .orbi .basic-card.attached { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b997ff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%222%22%20y%3D%223%22%20width%3D%2215%22%20height%3D%2212%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M9%2015v4M6%2019h6%22%2F%3E%3Crect%20x%3D%2216%22%20y%3D%2210%22%20width%3D%226%22%20height%3D%2211%22%20rx%3D%221.5%22%2F%3E%3C%2Fsvg%3E") !important; }
+#app .orbi .basic-card.guest { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b997ff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%227%22%20r%3D%223%22%2F%3E%3Cpath%20d%3D%22M2%2021v-2a7%207%200%200%201%2014%200v2M16%204a3%203%200%200%201%200%206M19%2014a6%206%200%200%201%203%205v2%22%2F%3E%3C%2Fsvg%3E") !important; }
+#app .orbi .basic-card.armor { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b997ff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m12%202%209%204v6c0%205-5%208-9%2010-4-2-9-5-9-10V6Z%22%2F%3E%3Cpath%20d%3D%22m8%2012%203%203%205-6%22%2F%3E%3C%2Fsvg%3E") !important; }
+/* A connection summary and one violet panel establish the dashboard hierarchy. */
+#app .orbi .basic-card.internet {
+  grid-column: span 2; order: 0; min-height: 230px;
+  background-color: var(--orbi-canvas) !important;
+}
+#app .orbi .basic-card.internet .left-label { display: block; margin-bottom: 4px; }
+#app .orbi #internet_stat .right-value {
+  font-size: clamp(32px, 3.5vw, 48px) !important;
+  font-weight: 500 !important; line-height: 1.2; letter-spacing: -.04em;
+}
+#app .orbi .basic-card.internet .error-right-value {
+  font-size: 26px !important; font-weight: 500; line-height: 1.3;
+}
+#app .orbi .basic-card.attached {
+  order: 1; background-color: #7133dd !important; border-color: #9256f4 !important;
+  --orbi-card-stroke: #9256f4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='15' height='12' rx='2'/%3E%3Cpath d='M9 15v4M6 19h6'/%3E%3Crect x='16' y='10' width='6' height='11' rx='1.5'/%3E%3C/svg%3E") !important;
+}
+#app .orbi .basic-card.attached:hover { background-color: #7a3de5 !important; }
+#app .orbi .basic-card.wireless { order: 2; }
+#app .orbi .basic-card.guest { order: 3; }
+#app .orbi .basic-card.armor { order: 4; }
+#app .orbi .basic-card.attached .left-label { color: #eee5ff !important; font-size: 12px !important; }
+#app .orbi #attached_stat .right-value {
+  color: #fff !important; font-size: 40px !important; font-weight: 500 !important;
+  line-height: 1.2; letter-spacing: -.04em; font-variant-numeric: tabular-nums;
+}
+#app .orbi #attached_stat .attached-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+#app .orbi #attached_stat .stat {
+  flex-direction: column; align-items: flex-start; overflow: visible;
+  gap: 8px; line-height: 1.4 !important;
+}
+#app .orbi .basic-card :is(#wireless1-1, #guest1-1) {
+  display: block; color: var(--orbi-text) !important;
+  font-size: 20px !important; line-height: 1.4; letter-spacing: -.025em;
+}
+#app .orbi .basic-card :is(.wireless-info, .wlan_stat) .stat { flex-direction: column; align-items: flex-start; gap: 8px; }
+/* Advanced overview: readable settings, natural card heights, and less chrome. */
+#app .orbi .main-form:has(.content_icons) {
+  position: relative !important; inset: auto !important;
+  width: auto !important; height: auto !important; padding: 0 !important;
+}
+#app .orbi .main-form:has(.content_icons) :is(.frame-scrollbar, .el-scrollbar__wrap, .el-scrollbar__view) {
+  height: auto !important; max-height: none !important;
+  overflow: visible !important; margin: 0 !important;
+}
+#app .orbi .main-form:has(.content_icons) .el-scrollbar__bar.is-vertical {
+  display: none !important;
+}
+#app .orbi .content_icons {
+  display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px; width: auto !important; max-width: 1400px;
+  margin: 32px !important; padding-bottom: 24px;
+}
+#app .orbi .content_icons > .advanced_page_line { display: none !important; }
+#app .orbi .content_icons > .adv_icon {
+  display: flex; flex-direction: column;
+  float: none !important; width: auto !important; min-width: 0;
+  height: auto !important; min-height: 0 !important; margin: 0 !important;
+  color: var(--orbi-text) !important; background: var(--orbi-surface) !important;
+  border: 1px solid var(--orbi-border) !important; border-radius: var(--orbi-radius-panel) !important;
+  overflow: hidden; box-shadow: none !important;
+}
+#app .orbi .content_icons > #wireless_general { grid-column: 1 / -1; }
+#app .orbi .adv_icon .title_doubleline {
+  box-sizing: border-box; display: flex; align-items: center; gap: 10px;
+  width: auto !important; height: auto !important; min-height: 68px;
+  padding: 22px 24px 12px;
+  color: var(--orbi-text) !important; background: #1b1b1b !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+#app .orbi .adv_icon .title_doubleline b {
+  display: block;
+  position: static !important; top: auto !important;
+  color: var(--orbi-text) !important; font-size: 18px !important;
+  line-height: 1.45; font-weight: 500 !important; text-transform: lowercase !important;
+}
+#app .orbi .adv_icon .title_doubleline b::first-letter { text-transform: uppercase; }
+#app .orbi .adv_icon .title_doubleline[id]:hover { background: #252129 !important; }
+#app .orbi .adv_icon .img_status {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 20px; float: none !important;
+  width: 20px !important; height: 20px !important; margin: 0 !important;
+  background: #29262f !important; border-radius: 50%;
+  font-size: 13px; font-weight: 700; line-height: 1;
+}
+#app .orbi .adv_icon .img_status_good { color: var(--orbi-good) !important; background: #29331a !important; }
+#app .orbi .adv_icon .img_status_good::after { content: "✓"; }
+#app .orbi .adv_icon .img_status_warning { color: var(--orbi-warning) !important; background: #463824 !important; }
+#app .orbi .adv_icon .img_status_warning::after { content: "!"; }
+#app .orbi .adv_icon .img_status_error { color: var(--orbi-error) !important; background: #482f34 !important; }
+#app .orbi .adv_icon .img_status_error::after { content: "×"; }
+#app .orbi .adv_icon :is(.icon_status_info, .icon_status_info-2) {
+  box-sizing: border-box; width: 100% !important;
+  height: auto !important; max-height: none !important;
+  overflow: visible !important; padding: 10px 24px 20px;
+}
+#app .orbi .adv_icon .icon_table {
+  display: table !important; table-layout: fixed; width: 100% !important;
+  margin: 0 !important; border-collapse: collapse; border-spacing: 0;
+  color: var(--orbi-text) !important; background: transparent !important;
+}
+#app .orbi .adv_icon .icon_table tbody { display: table-row-group !important; }
+#app .orbi .adv_icon .icon_table tr {
+  display: table-row !important; height: auto !important;
+  border-bottom: 1px solid #333035 !important;
+}
+#app .orbi .adv_icon .icon_table tr:last-child { border-bottom: 0 !important; }
+#app .orbi .adv_icon .icon_table td {
+  display: table-cell !important; vertical-align: top; height: auto !important;
+  padding: 9px 0 !important; color: var(--orbi-text) !important;
+  font-size: 13px !important; line-height: 1.6 !important;
+  white-space: normal !important; overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+#app .orbi .adv_icon .icon_table td:first-child:not([colspan]) {
+  width: 42% !important; padding-right: 18px !important;
+  color: var(--orbi-muted) !important;
+}
+#app .orbi #wireless_general .icon_table td:first-child { width: 180px !important; }
+#app .orbi .adv_icon .icon_table td b {
+  color: inherit !important; font-size: inherit !important;
+  line-height: inherit !important; font-weight: 450 !important;
+}
+#app .orbi .adv_icon .icon_table td[colspan] {
+  padding-top: 18px !important; color: var(--orbi-accent) !important;
+}
+#app .orbi .adv_icon .subhead_blue {
+  position: static !important; color: var(--orbi-accent) !important; font-weight: 600;
+}
+#app .orbi .adv_icon :is(.reboot_div, .button_div) {
+  box-sizing: border-box; position: static !important; width: 100% !important;
+  height: auto !important; margin: auto 0 0 !important; padding: 18px 24px;
+  display: flex; flex-wrap: wrap; gap: 10px;
+  background: transparent !important; border-top: 1px solid var(--orbi-border);
+  box-shadow: none !important;
+}
+#app .orbi .adv_icon :is(.reboot_div, .button_div) .el-button {
+  flex: 1 1 150px; width: auto !important; min-width: 0 !important;
+  height: auto !important; min-height: 38px; margin: 0 !important;
+  padding: 9px 12px !important; line-height: 1.4 !important;
+  border-radius: 999px !important; white-space: normal;
+  font-size: 12px !important; text-transform: none !important;
+  color: var(--orbi-text) !important; background: var(--orbi-raised) !important;
+  border-color: #45424a !important;
+}
+#app .orbi .adv_icon :is(.reboot_div, .button_div) .el-button:hover {
+  background: #312a3b !important; border-color: #b997ff !important;
+}
+#app .orbi .adv_icon .reboot_div .reboot.el-button:not(.is-disabled) {
+  color: #fff !important; background: #ba2b3e !important; border-color: #e45c6b !important;
+}
+#app .orbi .adv_icon .reboot_div .reboot.el-button:not(.is-disabled):hover {
+  background: #cc3547 !important; border-color: #ff8996 !important;
+}
+#app .orbi .adv_icon .reboot_div .reboot.el-button:not(.is-disabled):active {
+  background: #a22234 !important; border-color: #e45c6b !important;
+}
+#app .orbi .adv_icon .reboot_div .reboot:focus-visible { outline-color: #ff99a5 !important; }
+#app .orbi .adv_icon .reboot_div .reboot.el-button.is-disabled {
+  color: #b0a0a4 !important; background: #282327 !important; border-color: #483339 !important;
+}
+@media (max-width: 1000px) {
+  #app .orbi .content_icons { grid-template-columns: minmax(0, 1fr); margin: 18px !important; gap: 16px; }
+}
+/* Element UI uses separate header/body tables. Round the outer frame only. */
+#app .orbi .page-title { color: var(--orbi-text) !important; font-size: 24px !important; font-weight: 500 !important; letter-spacing: -.035em; }
+#app .orbi .el-table {
+  color: var(--orbi-text) !important; background: var(--orbi-surface) !important;
+  border: 1px solid var(--orbi-border) !important; border-radius: var(--orbi-radius-table) !important;
+  box-shadow: none !important; overflow: hidden !important;
+  background-clip: padding-box;
+  outline: 1px solid var(--orbi-border) !important; outline-offset: -1px !important;
+}
+#app .orbi .el-table::before,
+#app .orbi .el-table::after { display: none !important; }
+#app .orbi .el-table table { color: var(--orbi-text) !important; background: transparent !important; border: 0 !important; border-radius: 0 !important; border-collapse: collapse !important; border-spacing: 0 !important; }
+#app .orbi .el-table th,
+#app .orbi .el-table th .cell { color: var(--orbi-muted) !important; background: #202020 !important; font-size: 12px !important; font-weight: 500 !important; }
+#app .orbi .el-table :where(th, td) { border-color: var(--orbi-border) !important; border-right: 0 !important; padding-top: 10px !important; padding-bottom: 10px !important; }
+#app .orbi .el-table td { color: var(--orbi-text) !important; background: transparent !important; font-size: 13px !important; font-variant-numeric: tabular-nums; }
+/* The outer frame supplies the final edge, including header-only VPN tables. */
+#app .orbi .el-table .el-table__body tr:last-child td { border-bottom: 0 !important; }
+#app .orbi .el-table:not(:has(.el-table__body tr)) th { border-bottom: 0 !important; }
+#app .orbi .el-table .el-table__body tr { background: #1b1b1b !important; }
+#app .orbi .el-table .el-table__body tr:nth-child(even) { background: #1e1e1e !important; }
+#app .orbi .el-table .el-table__body tr:hover,
+#app .orbi .el-table .el-table__body tr.hover-row { background: #302244 !important; }
+/* Connected Devices sorting uses real buttons inside the existing headers. */
+#app .orbi #device_table th[data-orbi-sort-key] { cursor: pointer; }
+#app .orbi #device_table .orbi-sort-header {
+  display: inline-flex; align-items: center; gap: 6px;
+  box-sizing: border-box; width: 100%; padding: 0 4px; margin: 0;
+  border: 0; border-radius: 4px;
+  background: transparent; color: inherit; font: inherit; text-align: left;
+  cursor: pointer; outline: none !important; box-shadow: none !important;
+}
+#app .orbi #device_table .orbi-sort-label { min-width: 0; }
+#app .orbi #device_table .orbi-sort-indicator {
+  flex: 0 0 12px; width: 12px; font-size: 13px; line-height: 1;
+  color: var(--orbi-muted) !important; opacity: .65;
+}
+#app .orbi #device_table th:is([aria-sort="ascending"], [aria-sort="descending"]) .cell,
+#app .orbi #device_table .orbi-sort-header:hover { color: var(--orbi-text) !important; }
+#app .orbi #device_table th:is([aria-sort="ascending"], [aria-sort="descending"]) .orbi-sort-indicator {
+  color: var(--orbi-accent) !important; opacity: 1;
+}
+#app .orbi #device_table .orbi-sort-header:focus-visible {
+  outline: none !important; background: #2a2630;
+  box-shadow: inset 0 0 0 1px #92899f !important;
+}
+/* Keep hover feedback on the pointed row after its visual position changes. */
+#app .orbi #device_table[data-orbi-sorted="true"] .el-table__body tr.hover-row:not(:hover):not(.current-row) {
+  background: var(--orbi-surface) !important;
+}
+#app .orbi #device_table[data-orbi-sorted="true"] .el-table__body tr.hover-row:nth-child(even):not(:hover):not(.current-row) {
+  background: #1e1e1e !important;
+}
+/* Traffic Meter is a plain HTML table wearing Element UI classes.
+   Its first two rows contain the grouped headers, including rowspan cells. */
+#app .orbi #traffic_statistics {
+  border-collapse: separate !important; border-spacing: 0 !important;
+  background: var(--orbi-surface) !important;
+  color: var(--orbi-text) !important; border-color: var(--orbi-border) !important;
+  border-radius: var(--orbi-radius-table) !important; font-variant-numeric: tabular-nums;
+}
+#app .orbi #traffic_statistics tr { background: var(--orbi-surface) !important; }
+#app .orbi #traffic_statistics td {
+  background: transparent !important; color: var(--orbi-text) !important;
+  padding: 12px 14px !important; line-height: 1.5 !important;
+  border-bottom: 1px solid var(--orbi-border) !important; border-right: 0 !important;
+  vertical-align: middle; font-size: 13px !important;
+}
+#app .orbi #traffic_statistics tr:nth-child(-n+2) td {
+  background: #202020 !important; color: var(--orbi-muted) !important;
+  font-size: 12px !important; font-weight: 600;
+}
+#app .orbi #traffic_statistics td:nth-child(n+2),
+#app .orbi #traffic_statistics tr:nth-child(2) td { text-align: right; }
+#app .orbi #traffic_statistics td[colspan] { text-align: center; }
+#app .orbi #traffic_statistics tr:nth-child(n+3):nth-child(even) { background: #1e1e1e !important; }
+#app .orbi #traffic_statistics tr:nth-child(n+3):hover { background: #302244 !important; }
+#app .orbi #traffic_statistics tr:last-child td { border-bottom: 0 !important; }
+/* Keep section spacing on the table so Basic/Advanced wrappers do not matter. */
+#app .orbi:has(.attached-form) .top-fix { display: flow-root; }
+#app .orbi:has(.attached-form) .top-fix .page-title {
+  padding: 20px 20px 16px !important; margin: 0 !important; line-height: 32px !important;
+}
+#app .orbi .attached-form .el-table { width: 100% !important; margin: 0 !important; }
+#app .orbi .attached-form #satellite_table {
+  margin-bottom: 28px !important;
+}
+#app .orbi .attached-form b:not(.el-table b) {
+  display: inline-block; margin-bottom: 8px; font-size: 17px !important;
+  font-weight: 500 !important; letter-spacing: -.02em; line-height: 1.5;
+}
+#app .orbi .attached-form .el-scrollbar__view > div:has(> b:only-child) {
+  display: flex; align-items: center; min-height: 28px; margin-bottom: 12px;
+}
+#app .orbi .attached-form .el-scrollbar__view > div:first-child:has(> b:only-child) {
+  min-height: 36px; padding-inline-end: 120px;
+}
+#app .orbi .attached-form .el-scrollbar__view > div:has(> b:only-child) > b { margin: 0 !important; }
+#app .orbi .attached-form .vpn-devices { margin: 28px 0 0 !important; }
+#app .orbi .attached-form .vpn-devices > b { margin: 0 0 12px !important; line-height: 28px !important; }
+#app .orbi .attached-form .conn-type img {
+  filter: grayscale(1) brightness(.9);
+  display: block; margin: 0 !important;
+}
+#app .orbi .attached-form .cell:has(> .conn-type > img) {
+  display: flex !important; align-items: center; gap: 8px;
+}
+#app .orbi .attached-form .conn-type {
+  display: inline-flex !important; align-items: center; gap: 8px;
+}
+#app .orbi .attached-form .device-name { text-align: left !important; padding-left: 50px; }
+#app .orbi .attached-form .device-name span,
+#app .orbi .attached-form .device-conn span { display: block !important; }
+#app .orbi .attached-form .device-name span:first-child { color: var(--orbi-muted) !important; font-size: 12px; }
+#app .orbi .attached-form .device-name span:nth-child(2) { font-weight: 600; }
+#app .orbi .attached-form .device-name span:nth-child(n+3) { display: none !important; }
+#app .orbi .attached-form .device-conn span:nth-child(n+2) { color: var(--orbi-muted) !important; font-size: 12px; }
+#app .orbi .attached-form .device-type img { float: left !important; width: 36px !important; height: 36px !important; padding: 2px 0 !important; object-fit: contain; }
+#app .orbi img[src*="/static/streamboost_V1.0.1/"] { filter: brightness(0) invert(.86) !important; }
+#app .orbi .green-label { color: var(--orbi-good) !important; }
+#app .orbi .red-label { color: var(--orbi-error) !important; }
+/* Dashboards, devices, and settings cards scroll with the document.
+   Match visible content so login and separate device editors keep their layout. */
+html:has(.orbi :is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) {
+  height: auto !important; min-height: 100%; overflow-y: auto !important;
+  overscroll-behavior-y: none;
+  scroll-padding-top: calc(var(--orbi-header-height) + 20px);
+}
+body:has(.orbi :is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)),
+#app:has(.orbi :is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) {
+  height: auto !important; min-height: 100%; overflow: visible !important;
+}
+#app .orbi:has(:is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) {
+  display: block !important; height: auto !important; min-height: 100vh;
+}
+#app .orbi:has(:is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) > .el-header {
+  position: sticky !important; top: 0 !important; z-index: 100;
+  height: var(--orbi-header-height) !important;
+  background: var(--orbi-canvas) !important;
+}
+#app .orbi:has(:is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) .dni-aside {
+  position: fixed !important; top: var(--orbi-header-height) !important;
+  bottom: 43px !important; z-index: 10;
+}
+#app .orbi:has(:is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) .dni-main {
+  display: flow-root;
+  position: relative !important; inset: auto !important;
+  margin-left: 229px; height: auto !important; max-height: none !important;
+  min-height: calc(100vh - var(--orbi-header-height) - 43px); overflow: visible !important;
+}
+/* The firmware's bottom:-42px footer overlaps the last pixel of the card.
+   Keep support links in flow with a gap, without adding a full-width divider. */
+#app .orbi:has(:is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) .dni-footer {
+  box-sizing: border-box; display: flow-root;
+  position: relative !important; inset: auto !important; z-index: auto !important;
+  width: calc(100% - 40px) !important; min-width: 0 !important;
+  height: auto !important; min-height: 43px;
+  margin: 24px 20px 0 !important; overflow: visible !important;
+}
+#app .orbi:has(:is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) .dni-footer > div {
+  display: flow-root; height: auto !important; min-height: 43px;
+}
+#app .orbi:has(.content_icons) .dni-main,
+#app .orbi:has(.content_icons) .top-bar,
+#app .orbi:has(.content_icons) .dni-footer { min-width: 0 !important; }
+#app .orbi .attached-form {
+  position: relative !important; inset: auto !important;
+  width: auto !important; height: auto !important; max-height: none !important;
+  overflow: visible !important;
+}
+#app .orbi .attached-form > div:first-child {
+  display: flow-root; margin-bottom: 16px;
+}
+/* Refresh belongs to the first section heading rather than a separate tall row. */
+#app .orbi .attached-form > div:first-child:has(> .orbi_refresh) {
+  position: absolute; top: 0; right: 20px; z-index: 1;
+  display: flex; align-items: center; height: 36px; width: auto;
+  margin: 0 !important;
+}
+#app .orbi .attached-form .orbi_refresh {
+  box-sizing: border-box; float: none !important; height: 36px !important;
+  margin: 0 !important; padding: 0 18px !important; line-height: 34px !important;
+}
+#app .orbi .attached-form .frame-scrollbar,
+#app .orbi .attached-form .el-scrollbar__wrap,
+#app .orbi .attached-form .el-scrollbar__view {
+  height: auto !important; max-height: none !important;
+  overflow: visible !important; margin: 0 !important;
+}
+#app .orbi .attached-form .el-scrollbar__bar.is-vertical {
+  display: none !important;
+}
+#app .orbi .attached-form .el-table,
+#app .orbi .attached-form .el-table__body-wrapper {
+  height: auto !important; max-height: none !important;
+}
+#app .orbi .attached-form .el-table__body-wrapper {
+  overflow-x: auto !important; overflow-y: visible !important;
+}
+#app .orbi:has(:is(.attached-form, .content_icons, .basic-dashboard, .dni-main .main-form.static-frame)) .help-bar {
+  position: relative !important; bottom: auto !important;
+  width: auto !important; margin: 24px 20px 0 !important;
+}
+/* Login: readable branding, full-width inputs, and a clear primary action. */
+#app .orbi #loginWrapper {
+  box-sizing: border-box; width: min(420px, calc(100vw - 40px)) !important;
+  height: auto !important; top: 50% !important; left: 50% !important;
+  right: auto !important; bottom: auto !important; margin: 0 !important;
+  padding: 32px !important; transform: translate(-50%, -50%);
+  color: var(--orbi-text) !important; background: var(--orbi-surface) !important;
+  border: 1px solid #45424a !important; border-radius: var(--orbi-radius-panel) !important;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 35%) !important;
+}
+#app .orbi #loginWrapper > div { float: none !important; width: auto !important; }
+#app .orbi #loginWrapper div { box-sizing: border-box; float: none !important; width: 100% !important; }
+#app .orbi #loginWrapper .netgearLogo { margin: 0 0 30px !important; }
+#app .orbi #loginWrapper .netgearLogo img { display: block; width: 146px; height: auto; margin: 0 auto !important; filter: brightness(0) invert(.95); }
+#app .orbi #loginWrapper :where(.usernameWrapper, .passwordWrapper) { margin: 0 0 20px !important; }
+#app .orbi #loginWrapper .head-text { margin: 0 0 8px !important; font-size: 13px !important; font-weight: 550; }
+#app .orbi #loginWrapper input { box-sizing: border-box; float: none !important; width: 100% !important; height: 44px !important; margin: 0 !important; padding: 0 12px !important; font-size: 15px !important; }
+#app .orbi #loginWrapper input:focus-visible {
+  outline: 2px solid var(--orbi-accent) !important; outline-offset: 0 !important;
+  border-color: var(--orbi-accent) !important;
+}
+/* The login view uses a bare icon with old inline page coordinates. */
+#app .orbi #loginWrapper .passwordWrapper .body-text {
+  position: relative !important; height: 44px !important;
+}
+#app .orbi #loginWrapper input { display: block; }
+#app .orbi #loginWrapper .passwordWrapper input { padding-right: 44px !important; }
+#app .orbi #loginWrapper .passwordWrapper :is(.fa-eye, .fa-eye-slash, .el-icon-view) {
+  position: absolute !important; inset: 0 4px 0 auto !important;
+  display: inline-flex !important; align-items: center; justify-content: center;
+  width: 36px !important; height: auto !important; margin: 0 !important; padding: 0 !important;
+  float: none !important; transform: none !important;
+  font-size: 16px !important; line-height: 1 !important; color: var(--orbi-muted) !important;
+}
+#app .orbi #loginWrapper .passwordWrapper :is(.fa-eye, .fa-eye-slash, .el-icon-view)::before { display: block; line-height: 1 !important; }
+#app .orbi #loginWrapper .passwordWrapper :is(.fa-eye, .fa-eye-slash, .el-icon-view)::after { display: none !important; }
+#app .orbi #loginWrapper .passwordWrapper :is(.fa-eye, .fa-eye-slash, .el-icon-view):hover { color: var(--orbi-accent) !important; }
+#app .orbi #loginWrapper .loginButton { margin: 8px 0 0 !important; width: 100% !important; }
+#app .orbi #loginWrapper .loginButton > div { width: 100% !important; height: 44px !important; background: var(--orbi-primary) !important; border-radius: 999px !important; }
+#app .orbi #loginWrapper .loginButton a { box-sizing: border-box; color: #111111 !important; height: 44px; padding-top: 12px !important; font-size: 14px !important; font-weight: 650; }
+#app .orbi :where(.errorMsg, .err-msg, .el-form-item__error) { color: var(--orbi-error) !important; }
+/* Help and support without the multicolor banner. */
+#app .orbi .dni-footer,
+#app .orbi .dni-footer > div {
+  background: var(--orbi-canvas) !important; background-image: none !important;
+  color: var(--orbi-muted) !important; border-top: 0 !important;
+}
+#app .orbi .dni-footer .el-link { color: var(--orbi-muted) !important; }
+#app .orbi .dni-footer .el-link:hover { color: var(--orbi-text) !important; }
+#app .orbi :where(.help-switch, .help-content) { background: var(--orbi-surface) !important; color: var(--orbi-text) !important; border-top: 1px solid var(--orbi-border); }
+#app .orbi .help-icon { background: var(--orbi-selected) !important; color: var(--orbi-accent) !important; }
+#app .orbi .open-help-button { border-left-color: transparent !important; border-right-color: transparent !important; border-bottom-color: var(--orbi-muted) !important; }
+#app .orbi .close-help-button { border-left-color: transparent !important; border-right-color: transparent !important; border-top-color: var(--orbi-muted) !important; }
+/* Settings cards grow to contain every field, including nested Internet frames. */
+#app .orbi .main-form.static-frame:not(.attached-form):not(:has(.content_icons)) {
+  box-sizing: border-box; position: relative !important; inset: auto !important;
+  width: calc(100% - 40px) !important; height: auto !important; max-height: none !important;
+  margin: 0 20px 24px !important; overflow: visible !important;
+  padding: 20px !important; background: var(--orbi-surface) !important;
+  border: 1px solid var(--orbi-border) !important; border-radius: var(--orbi-radius-panel);
+}
+#app .orbi .dni-main .main-form.static-frame .static-frame {
+  position: static !important; inset: auto !important;
+  width: 100% !important; height: auto !important; max-height: none !important;
+  padding: 0 !important; overflow: visible !important;
+}
+#app .orbi .dni-main .main-form.static-frame .main-form.static-frame {
+  margin: 0 !important; border: 0 !important; background: transparent !important;
+}
+#app .orbi .dni-main .main-form.static-frame :is(.frame-scrollbar, .el-scrollbar__wrap, .el-scrollbar__view) {
+  height: auto !important; max-height: none !important;
+  overflow: visible !important; margin: 0 !important;
+}
+#app .orbi .dni-main .main-form.static-frame .el-scrollbar__bar.is-vertical { display: none !important; }
+#app .orbi .dni-main .main-form.static-frame :is(.el-table, .el-table__body-wrapper) {
+  height: auto !important; max-height: none !important;
+}
+#app .orbi .dni-main .main-form.static-frame .el-table__body-wrapper {
+  overflow-x: auto !important; overflow-y: visible !important;
+}
+/* Place form actions after the expanded card, then the help bar in page flow. */
+#app .orbi:has(.dni-main .main-form.static-frame) .form-buttons {
+  position: relative !important; inset: auto !important; float: none !important;
+  display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 12px;
+  width: calc(100% - 40px) !important; height: auto !important; min-height: 36px;
+  margin: 0 20px 24px !important; padding: 0 !important;
+  line-height: normal !important; box-shadow: none !important;
+}
+#app .orbi:has(.dni-main .main-form.static-frame) .form-buttons .el-button {
+  margin: 0 !important; height: 36px !important; line-height: 34px !important;
+  padding: 0 20px !important;
+}
+#app .orbi:has(.dni-main .main-form.static-frame) .main-form .form-buttons {
+  width: 100% !important; margin: 24px 0 0 !important;
+}
+#app .orbi:has(.dni-main .main-form.static-frame) .help-bar {
+  width: auto !important; margin: 24px 20px 0 !important;
+}
+#app .orbi .main-form .el-form-item { margin-bottom: 16px !important; }
+#app .orbi .main-form .el-form-item__label {
+  font-size: 13px !important; line-height: 24px !important; white-space: normal !important;
+}
+#app .orbi .main-form .el-form-item__content { font-size: 13px !important; line-height: 24px !important; }
+#app .orbi .main-form u { color: var(--orbi-accent) !important; }
+/* Keep compact IP/numeric fields and centred suffixes at their current sizes. */
+#app .orbi .main-form .el-input > .el-input__inner:not(
+  .ipv4 input, .ipv6 input, .interfaceId input, .ip-input-row input,
+  [inputmode="numeric"], [inputmode="decimal"],
+  [maxlength="1"], [maxlength="2"], [maxlength="3"], [maxlength="4"],
+  [maxlength="5"], [maxlength="6"], [maxlength="7"], [maxlength="8"],
+  [maxlength="9"], [maxlength="10"]
+) { padding-inline-start: 10px !important; }
+#app .orbi .main-form .el-divider--horizontal {
+  height: 1px !important; margin: 22px 0 !important; background: var(--orbi-border) !important;
+}
+#app .orbi .main-form .blueBar {
+  border: 0 !important; border-top: 1px solid var(--orbi-border) !important;
+  background: transparent !important;
+}
+#app .orbi .main-form .el-button:not(.dni-upload .el-button):not(.adv_icon .el-button) {
+  box-sizing: border-box; height: auto !important; min-height: 36px;
+  padding: 8px 20px !important; line-height: 18px !important;
+}
+#app .orbi :is(input[type="checkbox"], input[type="radio"]) { accent-color: var(--orbi-violet); }
+#app .orbi .el-switch__core { background: #4a454f !important; border-color: #4a454f !important; }
+#app .orbi .el-switch.is-checked .el-switch__core { background: var(--orbi-violet) !important; border-color: var(--orbi-violet) !important; }
+#app .orbi .el-switch__label { color: var(--orbi-muted) !important; }
+#app .orbi .el-switch__label.is-active { color: var(--orbi-accent) !important; }
+#app .orbi .el-progress-bar__outer { background: #343035 !important; }
+#app .orbi .el-progress-bar__inner { background: var(--orbi-violet) !important; }
+#app .orbi .el-progress__text { color: var(--orbi-text) !important; }
+#app .orbi .el-loading-process {
+  background: var(--orbi-canvas) !important;
+  border: 0 !important; box-shadow: none !important;
+}
+#app .orbi .el-loading-spinner .path { stroke: var(--orbi-accent) !important; }
+#app .orbi .el-loading-spinner .el-loading-text { color: var(--orbi-text) !important; }
+#app .orbi .process-bar { background: var(--orbi-field) !important; border-color: var(--orbi-border) !important; border-radius: 999px; overflow: hidden; }
+#app .orbi .process { background: var(--orbi-violet) !important; }
+/* Additional native tables used by VLAN and legacy configuration pages. */
+#app .orbi .main-form table:not(.el-table table):not(.el-table):not(.icon_table):not(:has(#speedtestBtn)) {
+  color: var(--orbi-text) !important; background-color: transparent !important;
+}
+#app .orbi :is(.table_header, .table_header td) { color: var(--orbi-muted) !important; background: #202020 !important; border-color: var(--orbi-border) !important; }
+#app .orbi .odd_line { color: var(--orbi-text) !important; background: var(--orbi-surface) !important; }
+#app .orbi .even_line { color: var(--orbi-text) !important; background: #1e1e1e !important; }
+#app .orbi :is(.odd_line, .even_line) td { color: inherit !important; border-color: var(--orbi-border) !important; }
+#app .orbi .pop_box {
+  color: var(--orbi-text) !important; background: var(--orbi-surface) !important;
+  border: 1px solid var(--orbi-border) !important;
+  border-radius: var(--orbi-radius-panel) !important; box-shadow: 0 20px 60px rgb(0 0 0 / 35%) !important;
+}
+#app .orbi .radio-box .n-radio input[type="radio"] + label::before {
+  background: var(--orbi-field) !important; border-color: var(--orbi-field-border) !important;
+}
+#app .orbi .radio-box .n-radio input[type="radio"]:checked + label::before {
+  background: var(--orbi-violet) !important; border-color: var(--orbi-accent) !important;
+}
+#app .orbi .ip-input-row input {
+  color: var(--orbi-text) !important; -webkit-text-fill-color: var(--orbi-text) !important;
+}
+/* Tabs, popovers, and dialogs follow the same neutral / white action system. */
+#app .orbi .el-tabs__nav-wrap::after { background: var(--orbi-border) !important; height: 1px; }
+#app .orbi .el-tabs__active-bar { display: none !important; }
+#app .orbi .el-tabs__item {
+  margin: 0 6px 8px 0; padding: 0 16px !important; height: 32px !important;
+  line-height: 32px !important; border: 1px solid var(--orbi-border) !important;
+  border-radius: 999px; background: var(--orbi-raised) !important;
+  color: var(--orbi-muted) !important; font-size: 13px !important; font-weight: 500;
+}
+#app .orbi .el-tabs__item.is-active { background: var(--orbi-primary) !important; color: var(--orbi-primary-text) !important; border-color: var(--orbi-primary) !important; }
+#app .orbi .el-tabs__item.is-disabled { background: var(--orbi-surface) !important; color: #a29eab !important; border-color: var(--orbi-border) !important; }
+#app .orbi :is(.el-tabs__header, .el-tabs__nav) { border-color: var(--orbi-border) !important; }
+.el-dialog, .el-message-box { border-radius: var(--orbi-radius-panel) !important; border: 1px solid var(--orbi-border) !important; }
+.el-dialog__header, .el-message-box__header { padding: 24px 24px 12px !important; }
+.el-dialog__body, .el-message-box__content { color: var(--orbi-muted) !important; padding: 16px 24px !important; line-height: 1.65; }
+.el-dialog__footer, .el-message-box__btns { padding: 16px 24px 24px !important; }
+.el-dialog__title, .el-message-box__title { font-size: 20px !important; font-weight: 500 !important; }
+.el-dialog__headerbtn .el-dialog__close, .el-message-box__headerbtn .el-message-box__close { color: var(--orbi-muted) !important; }
+.el-message, .el-notification {
+  color: var(--orbi-text) !important; background: var(--orbi-surface) !important;
+  border: 1px solid var(--orbi-border) !important; border-radius: 14px !important;
+}
+.el-notification__title { color: var(--orbi-text) !important; }
+.el-notification__content, .el-message--info .el-message__content { color: var(--orbi-muted) !important; }
+.el-message--success .el-message__content { color: var(--orbi-good) !important; }
+.el-message--warning .el-message__content { color: var(--orbi-warning) !important; }
+.el-message--error .el-message__content { color: var(--orbi-error) !important; }
+.el-dialog .el-button, .el-message-box .el-button { border-radius: 999px !important; color: var(--orbi-text) !important; background: var(--orbi-raised) !important; border-color: #45424a !important; }
+.el-dialog .el-button--primary, .el-message-box .el-button--primary { color: var(--orbi-primary-text) !important; background: var(--orbi-primary) !important; border-color: var(--orbi-primary) !important; }
+.el-dialog .el-input__inner, .el-message-box .el-input__inner {
+  color: var(--orbi-text) !important; background: var(--orbi-field) !important;
+  border-color: var(--orbi-field-border) !important; border-radius: var(--orbi-radius-control);
+}
+.el-dialog :is(button, input, select):focus-visible,
+.el-message-box :is(button, input, select):focus-visible { outline: 2px solid var(--orbi-accent) !important; outline-offset: 3px; }
+.el-select-dropdown, .el-dropdown-menu { border-radius: 14px !important; padding-block: 6px !important; }
+.el-select-dropdown__item.selected { color: var(--orbi-accent) !important; font-weight: 600 !important; }
+.el-popper[x-placement^="bottom"] .popper__arrow { border-bottom-color: var(--orbi-border) !important; }
+.el-popper[x-placement^="bottom"] .popper__arrow::after { border-bottom-color: var(--orbi-surface) !important; }
+.el-popper[x-placement^="top"] .popper__arrow { border-top-color: var(--orbi-border) !important; }
+.el-popper[x-placement^="top"] .popper__arrow::after { border-top-color: var(--orbi-surface) !important; }
+#app .orbi .el-card { border-radius: var(--orbi-radius-panel) !important; box-shadow: none !important; }
+#app .orbi .el-card__header { color: var(--orbi-text) !important; background: transparent !important; border-color: var(--orbi-border) !important; padding: 20px 24px !important; }
+#app .orbi .el-card__body { padding: 24px !important; }
+#app .orbi .help-switch { border-radius: 12px !important; }
+#app .orbi .help-icon { background: var(--orbi-selected) !important; color: var(--orbi-accent) !important; }
+#app .orbi .dni-footer .el-link { font-size: 11px !important; }
+#app .orbi.login-page {
+  background: radial-gradient(ellipse at 15% 10%, rgb(200 237 100 / 9%), transparent 45%),
+    radial-gradient(ellipse at 90% 90%, rgb(122 61 240 / 17%), transparent 50%), var(--orbi-canvas) !important;
+}
+/* Help is an accordion below the actions, not a popup over the form. */
+#app .orbi .help-bar {
+  box-sizing: border-box; border: 1px solid var(--orbi-border);
+  border-radius: var(--orbi-radius-panel); overflow: hidden;
+  background: var(--orbi-surface) !important;
+}
+#app .orbi .help-bar .help-switch {
+  box-sizing: border-box; display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) 28px auto;
+  align-items: center; gap: 10px;
+  width: 100% !important; height: auto !important; min-height: 48px;
+  padding: 10px 14px; border: 0 !important; border-radius: 0 !important;
+}
+#app .orbi .help-bar .help-icon {
+  float: none !important; width: 22px; height: 22px;
+  margin: 0 !important; font-size: 13px; line-height: 22px;
+}
+#app .orbi .help-bar .help-center {
+  float: none !important; font-size: 14px !important; line-height: 22px !important;
+  font-weight: 550;
+}
+#app .orbi .help-bar .togger-help {
+  float: none !important; margin: 0 !important; line-height: 20px !important;
+  font-size: 12px !important; font-style: normal !important; text-decoration: none !important;
+  color: var(--orbi-muted) !important;
+}
+#app .orbi .help-bar .togger-help:hover { color: var(--orbi-accent) !important; text-decoration: underline !important; }
+#app .orbi .help-bar :is(.open-help-button, .close-help-button) {
+  position: static !important; inset: auto !important;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px !important; height: 28px !important;
+  border: 0 !important; border-radius: 50%; background: transparent;
+}
+#app .orbi .help-bar :is(.open-help-button, .close-help-button)::before {
+  content: ""; display: block; width: 7px; height: 7px;
+  border-right: 1.5px solid var(--orbi-muted); border-bottom: 1.5px solid var(--orbi-muted);
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+#app .orbi .help-bar .close-help-button::before { transform: rotate(225deg) translate(-1px, -1px); }
+#app .orbi .help-bar :is(.open-help-button, .close-help-button):hover { background: var(--orbi-raised); }
+/* Leave Vue's inline display:none intact so collapsed articles stay hidden. */
+#app .orbi .help-bar .help-content {
+  box-sizing: border-box; position: static !important; inset: auto !important;
+  width: 100% !important; height: auto !important; max-height: none !important;
+  padding: 20px 24px 24px !important; overflow: visible !important;
+  border-top: 1px solid var(--orbi-border) !important;
+  color: var(--orbi-muted) !important; font-size: 14px !important; line-height: 1.75 !important;
+}
+/* Keep help's own scroll wrapper usable for the firmware's section links.
+   These rules follow the form-frame resets so help cannot inherit overflow:visible. */
+#app .orbi .help-bar .help-content .frame-scrollbar.el-scrollbar {
+  height: auto !important; max-height: min(480px, 60vh) !important;
+  overflow: hidden !important;
+}
+#app .orbi .help-bar .help-content .frame-scrollbar.el-scrollbar .el-scrollbar__wrap {
+  box-sizing: border-box; height: auto !important; max-height: min(480px, 60vh) !important;
+  overflow-x: hidden !important; overflow-y: auto !important; margin: 0 !important;
+  scrollbar-width: thin; scrollbar-color: var(--orbi-field-border) var(--orbi-surface);
+}
+#app .orbi .help-bar .help-content .el-scrollbar__view > div {
+  position: relative; max-width: 80ch; padding-right: 16px;
+  overflow-wrap: anywhere; color: inherit !important;
+}
+#app .orbi .help-bar .help-content :is(p, font, li) {
+  color: inherit !important; font-size: inherit !important; line-height: inherit !important;
+}
+#app .orbi .help-bar .help-content p { margin: 0 0 14px !important; }
+#app .orbi .help-bar .help-content :is(b, strong) { color: var(--orbi-text) !important; font-weight: 600; }
+#app .orbi .help-bar .help-content :is(h1, h2, h3, font > b) {
+  color: var(--orbi-text) !important; font-size: 17px !important; line-height: 1.4 !important;
+}
+#app .orbi .help-bar .help-content :is(h1, h2, h3),
+#app .orbi .help-bar .help-content p:has(> :is(b, font):only-child) { margin: 24px 0 10px !important; }
+#app .orbi .help-bar .help-content .el-scrollbar__view > div > p:first-child { margin-top: 0 !important; }
+#app .orbi .help-bar .help-content :is(ul, ol) { padding-left: 24px; margin: 0 0 18px; }
+#app .orbi .help-bar .help-content li { margin-bottom: 8px; }
+#app .orbi .help-bar .help-content hr {
+  height: 0; margin: 24px 0; border: 0; border-top: 1px solid var(--orbi-border);
+}
+/* Paint the rounded stroke above child backgrounds so curves remain continuous.
+   Skip undecorated nested forms; preserve the violet device card's own stroke. */
+#app .orbi :is(.basic-card, .content_icons > .adv_icon, .el-card, .help-bar, .pop_box,
+  .main-form.static-frame:not(.attached-form):not(:has(:is(.content_icons, .modes-box))):not(.main-form.static-frame .main-form.static-frame)) {
+  border-radius: var(--orbi-radius-panel) !important;
+  outline: 1px solid var(--orbi-card-stroke, var(--orbi-border)) !important;
+  outline-offset: -1px !important; background-clip: padding-box;
+}
+/* Router / AP Mode already has selectable tiles. Its wrapper is not a card. */
+#app .orbi .dni-main .main-form.static-frame:has(.modes-box) {
+  display: flow-root; padding: 0 !important;
+  background: transparent !important; border: 0 !important; outline: none !important;
+  box-shadow: none !important;
+}
+#app .orbi .dni-main .main-form.static-frame:has(.modes-box) .el-scrollbar__view { display: flow-root; }
+#app .orbi .modes-box { display: flow-root; }
+#app .orbi .modes-box:not(.box-selected) {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;
+  width: 100% !important; margin: 8px 0 24px !important;
+}
+#app .orbi .modes-box:not(.box-selected) > div {
+  float: none !important; margin: 0 !important; flex: 0 0 205px;
+}
+@media (max-width: 1050px) {
+  #app .orbi .basic-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px !important; }
+  #app .orbi .basic-card.internet { grid-column: 1 / -1; }
+  #app .orbi .basic-card.attached { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  #app .orbi .basic-dashboard { grid-template-columns: minmax(0, 1fr); }
+  #app .orbi .basic-card.internet { grid-column: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #app .orbi :where(.animate, .dotting) { animation: none !important; }
+}

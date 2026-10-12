@@ -1,0 +1,9 @@
+# Local previews, browser profiles, and development captures
+/work/
+
+# macOS metadata
+.DS_Store
+
+# Packaged Chrome extensions and private signing keys
+*.crx
+*.pem
