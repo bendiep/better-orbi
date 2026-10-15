@@ -42,8 +42,8 @@
 
 The extension has only been tested with the following Orbi setup:
 
-| Router | │ | Firmware |
-| --- | :---: | --- |
-| Orbi 870 (RBE871) | │ | `V10.5.20.4_1.3.5` |
+| Router | Firmware |
+| --- | --- |
+| Orbi 870 (RBE871) | `V10.5.20.4_1.3.5` |
 
 Other Orbi models and firmware versions may use different page layouts.
