@@ -12,6 +12,7 @@
 
 - Redesigned admin interface.
 - Sortable attached devices table.
+- Offline devices are shown in attached devices table
 - Wider input fields where needed.
 
 ## Before and after samples
@@ -47,3 +48,8 @@ The extension has only been tested with the following Orbi setup:
 | Orbi 870 (RBE871) | `V10.5.20.4_1.3.5` |
 
 Other Orbi models and firmware versions may use different page layouts.
+
+The offline devices script replaces the Vue 2 client-list filter used by the tested
+firmware. It keeps the router's satellite and VPN exclusions and device-edit IDs.
+It does not change device status or fetch additional device history, so devices
+missing from the router's response cannot appear in the table.

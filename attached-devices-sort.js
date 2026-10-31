@@ -46,7 +46,7 @@
       return [text(spans?.[0]) || text(cell), mac(text(spans?.[1]))];
     }
     // The first .conn-type contains only an image; the label is in its sibling.
-    if (kind === "connection") return [text(cell)];
+    if (kind === "connection") return [text(cell?.querySelector(".orbi-device-offline-label")) || text(cell)];
     if (kind === "mac") return [mac(text(cell))];
     return [text(cell)];
   }
