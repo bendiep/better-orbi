@@ -12,6 +12,7 @@
 
 - Redesigned admin interface.
 - Sortable attached devices table.
+- Offline devices are shown in attached devices table
 - Wider input fields where needed.
 
 ## Before and after samples

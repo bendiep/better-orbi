@@ -695,8 +695,15 @@ html, body, #app, #app .orbi {
 #app .orbi .attached-form .vpn-devices { margin: 28px 0 0 !important; }
 #app .orbi .attached-form .vpn-devices > b { margin: 0 0 12px !important; line-height: 28px !important; }
 #app .orbi .attached-form .conn-type img {
-  filter: grayscale(1) brightness(.9);
+  /* Keep the light grey circles while darkening the symbols and lettering. */
+  filter: grayscale(1) brightness(.7) contrast(3) brightness(.86);
+  /* Composite the translucent 6 GHz asset like the other connection icons. */
+  background-color: #fff; border-radius: 50%;
   display: block; margin: 0 !important;
+}
+#app .orbi .attached-form .conn-type img:not([src*="wiredConnection.png"]) {
+  /* Wireless assets have lighter strokes; make them black without dimming the circle. */
+  filter: grayscale(1) brightness(.65) contrast(6) brightness(.84);
 }
 #app .orbi .attached-form .cell:has(> .conn-type > img) {
   display: flex !important; align-items: center; gap: 8px;
@@ -710,6 +717,10 @@ html, body, #app, #app .orbi {
 #app .orbi .attached-form .device-name span:first-child { color: var(--orbi-muted) !important; font-size: 12px; }
 #app .orbi .attached-form .device-name span:nth-child(2) { font-weight: 600; }
 #app .orbi .attached-form .device-name span:nth-child(n+3) { display: none !important; }
+#app .orbi #device_table .orbi-device-offline .conn-type { display: none !important; }
+#app .orbi #device_table .orbi-device-offline .device-name > span:nth-child(2) {
+  color: var(--orbi-muted) !important;
+}
 #app .orbi .attached-form .device-conn span:nth-child(n+2) { color: var(--orbi-muted) !important; font-size: 12px; }
 #app .orbi .attached-form .device-type img { float: left !important; width: 36px !important; height: 36px !important; padding: 2px 0 !important; object-fit: contain; }
 #app .orbi img[src*="/static/streamboost_V1.0.1/"] { filter: brightness(0) invert(.86) !important; }
